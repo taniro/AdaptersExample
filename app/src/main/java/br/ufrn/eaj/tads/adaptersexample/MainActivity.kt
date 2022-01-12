@@ -33,29 +33,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var fruitToListAdapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, FRUTAS)
+        val fruitToListAdapter = ArrayAdapter<String>(this, R.layout.list_item, FRUTAS)
 
         autocomplete.setAdapter(fruitToListAdapter)
+
         autocomplete.setOnItemClickListener { adapterView, view, i, l ->
-            var selected = adapterView.getItemAtPosition(i)
+            val selected = adapterView.getItemAtPosition(i)
             Toast.makeText(this, "$selected $l", Toast.LENGTH_SHORT).show()
         }
 
         multiautocomplete.setAdapter(fruitToListAdapter)
         multiautocomplete.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
 
-        var fruitToSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, FRUTAS)
+        multiautocomplete.setOnItemClickListener { adapterView, view, i, l ->
+            val selected = adapterView.getItemAtPosition(i)
+            Toast.makeText(this, "$selected $l", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+        val fruitToSpinnerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, FRUTAS)
         spinner.adapter = fruitToSpinnerAdapter
+
         spinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(adapterView: AdapterView<*>?) {
 
             }
 
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                var selected = adapterView.getItemAtPosition(position)
-                Toast.makeText(this@MainActivity, "$selected", Toast.LENGTH_SHORT).show()
+                val selected = adapterView.getItemAtPosition(position)
+                Toast.makeText(this@MainActivity, "$selected $position", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 }

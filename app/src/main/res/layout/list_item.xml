@@ -6,5 +6,5 @@
     android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
     android:textAppearance="?android:attr/textAppearanceListItem"
     android:gravity="center_vertical"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimaryDark"
     />
